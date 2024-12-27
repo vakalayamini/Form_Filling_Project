@@ -22,10 +22,52 @@ def transcribe_speech(audio_path, target_language='en'):
         return translated_text
     return original_text
 
-# Home route (Redirect directly to form)
+# In-memory user data storage
+users = []
+
+# Home route
 @app.route('/')
 def home():
-    return redirect('/form')
+    return render_template('home.html')
+
+# Signup route
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if email already exists
+        if any(user['email'] == email for user in users):
+            flash("Account already exists!", "error")
+            return redirect('/signup')
+
+        # Add new user
+        users.append({'email': email, 'password': password})
+        flash("Signup successful! Please login.", "success")
+        return redirect('/login')
+
+    return render_template('signup.html')
+
+# Login route
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check credentials
+        if email == 'admin@gmail.com' and password == 'admin123':
+            flash("Welcome Admin!", "success")
+            return redirect('/form')
+        elif any(user['email'] == email and user['password'] == password for user in users):
+            flash("Login successful!", "success")
+            return redirect('/form')
+        else:
+            flash("Invalid username or password.", "error")
+            return redirect('/login')
+
+    return render_template('login.html')
 
 # Form filling route
 @app.route('/form', methods=['GET', 'POST'])
@@ -48,10 +90,8 @@ def form_filling():
             year_of_study = request.form['yearOfStudy']
             percentage = request.form['percentage']
 
-            # Logic for processing and storing data can be added here
-
             flash("Student details submitted successfully!", "success")
-            return redirect('/form')
+            return redirect('/home')
         except Exception as err:
             print(f"Error: {err}")
             flash("There was an error while submitting the form. Please try again.", "error")
