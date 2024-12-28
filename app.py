@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, redirect, flash
 import os
 import whisper
 from googletrans import Translator
-
+# Render port binding
+PORT = int(os.getenv("PORT", 5000))
 # Flask app setup
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 # Load the Whisper model
-model = whisper.load_model("base")
+model = whisper.load_model("tiny")
 
 # Translator for multilingual support
 translator = Translator()
@@ -100,5 +101,4 @@ def form_filling():
     return render_template('form.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=PORT,debug=True)
