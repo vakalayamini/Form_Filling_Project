@@ -92,7 +92,7 @@ def form_filling():
             percentage = request.form['percentage']
 
             flash("Student details submitted successfully!", "success")
-            return redirect('/home')
+            return redirect('/')
         except Exception as err:
             print(f"Error: {err}")
             flash("There was an error while submitting the form. Please try again.", "error")
