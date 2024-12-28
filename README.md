@@ -1,49 +1,116 @@
-# FormFilling_project
+# Voice-Based Form Filling 
 
-## Voice-Controlled Form Filling Application
+This is a Flask-based web application that leverages OpenAI's Whisper model for transcribing audio input to text. The app enables users to complete forms using voice input by processing audio files, extracting transcriptions, and mapping the text to form fields.  
 
-### Overview
-This project is a **Voice-Controlled Form Filling Application** that enables users to fill out a registration form using voice commands. Built with **Flask** and **Whisper**, the application streamlines the process of form filling, making it hands-free and accessible. 
+The application includes user authentication (signup and login pages), a home page, and a registration form page.
 
----
-
-### Features
-
-- **Voice-to-Text Input**:
-  - Users can input details such as name, date of birth, gender, phone number, and address using their voice via a microphone icon.
-  - Leverages **Whisper** for accurate speech-to-text transcription.
-  
-- **Form Fields**:
-  - First Name
-  - Last Name
-  - Father’s Name
-  - Mother’s Name
-  - Date of Birth
-  - Gender
-  - Phone Number
-  - Email Address
-  - Blood Group
-  - Address
-  - Branch, Section, Roll Number, Year of Study, and Percentage.
-
-- **User-Friendly Interface**:
-  - Clean and responsive front-end built with **HTML**, **CSS**, and **JavaScript**.
-  - Easy-to-use design featuring microphone icons for voice input.
+**Deployment Link**: [Voice Form Filling App](https://form-filling-project-gba3.onrender.com)  
+**Screen Recording Link**: [Demo Video](https://drive.google.com/file/d/1aibOASPsC-OzpsLcru2JeKZ5nkHZQQN4/view?usp=sharing)
 
 ---
 
-### Technologies Used
+### Workflow
 
-- **Backend**: Flask (Python)
-- **Speech Recognition**: Whisper
-- **Frontend**: HTML, CSS, JavaScript
-- **Others**: Google Translate API (optional for multilingual support)
+1. **Signup**: After the user submits their signup details, the system checks if the provided email is already present in the database.
+   - If the email exists, the user is redirected to the signup page.
+   - If the email doesn't exist, the user is redirected to the login page.
+
+2. **Login**: When the user tries to log in:
+   - If the credentials are incorrect, the user is redirected back to the login page to try again.
+   - If the credentials are correct, the student registration form opens for the user to fill out.
+
+3. **Student Registration Form**: 
+   - After filling out the student registration form, the system checks if all details are valid.
+   - If the form is valid, the user is redirected to the home page.
+   - If the form is invalid or incomplete, the user is redirected back to the form page to correct the errors.
+     
+---
+
+## Features
+
+- **Voice-to-Text Transcription**: Uses OpenAI's Whisper model to transcribe audio files into text.
+- **Field-Specific Processing**: Automatically adapts transcription for fields like email addresses (e.g., replacing "at the rate" with "@" and "dot" with ".").
+- **User Authentication**: Secure signup and login system.
+- **User-Friendly Pages**:
+   - **Home Page**: Serves as the central hub for navigation.
+                 ![image](https://github.com/user-attachments/assets/76e9d298-b912-400a-8f5f-8719359ed331)
+
+  - **Signup Page**: Allows new users to create accounts.
+               ![image](https://github.com/user-attachments/assets/ecc45ccf-7ab8-4a73-8e81-dd79cd81a423)
+
+  - **Login Page**: Authenticates returning users.
+                ![image](https://github.com/user-attachments/assets/cce0cc51-6eeb-4a7d-b428-31824cbc605e)
+
+  - **Registration Form Page**: Provides the interface for voice-based form filling.
+                ![image](https://github.com/user-attachments/assets/967fa02c-21cf-4e7f-b305-40522cebe7cd)
+---
+
+## Prerequisites
+- Python 3.8 or higher
+- MySQL database
+- pip (Python package installer)
 
 ---
 
-### How to Run the Project
+## Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/vakalayamini/FormFilling_project.git
-   cd FormFilling_project
+### 1. Clone the Repository
+```bash
+https://github.com/yourusername/voice-form-filling.git
+cd voice-form-filling
+```
+
+### 2. Install Dependencies
+Ensure you have all necessary dependencies installed by using the `requirements.txt` file:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download Whisper Model
+The application uses the "tiny" version of Whisper. This will be downloaded automatically when you run the app.
+
+---
+
+## Usage
+
+### 1. Run the Application
+```bash
+python app.py
+```
+
+### 2. Access the Application
+Open a browser and navigate to:
+```
+http://127.0.0.1:5000
+```
+---
+
+## Deployment
+The application is deployed on platform[Render](https://render.com). However, due to memory constraints on free-tier deployments, the audio upload feature might not work reliably.
+
+---
+
+-MIT License
+
+Copyright (c) 2024 Infosys
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+
